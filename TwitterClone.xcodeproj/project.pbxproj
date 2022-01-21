@@ -17,6 +17,7 @@
 		1D4B669F2799836400F33EB4 /* NotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4B669E2799836400F33EB4 /* NotificationsView.swift */; };
 		1D4B66A12799837200F33EB4 /* MessagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4B66A02799837200F33EB4 /* MessagesView.swift */; };
 		1D4B66A32799837E00F33EB4 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4B66A22799837E00F33EB4 /* ProfileView.swift */; };
+		1D52E37D279A50B200FAF376 /* TwitFilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D52E37C279A50B200FAF376 /* TwitFilterViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		1D4B669E2799836400F33EB4 /* NotificationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsView.swift; sourceTree = "<group>"; };
 		1D4B66A02799837200F33EB4 /* MessagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesView.swift; sourceTree = "<group>"; };
 		1D4B66A22799837E00F33EB4 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		1D52E37C279A50B200FAF376 /* TwitFilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitFilterViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,6 +195,7 @@
 		1D52E379279A4A7D00FAF376 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				1D52E37C279A50B200FAF376 /* TwitFilterViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -276,6 +279,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D4B66A32799837E00F33EB4 /* ProfileView.swift in Sources */,
+				1D52E37D279A50B200FAF376 /* TwitFilterViewModel.swift in Sources */,
 				1D4B669427997C0A00F33EB4 /* TweetRowView.swift in Sources */,
 				1D4B669227997B8800F33EB4 /* FeedView.swift in Sources */,
 				1D4B667B2799794F00F33EB4 /* TwitterCloneApp.swift in Sources */,
