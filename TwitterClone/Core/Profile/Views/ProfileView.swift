@@ -109,23 +109,7 @@ extension ProfileView {
                 .foregroundColor(.gray)
             }
             
-            HStack {
-                HStack(spacing: 4) {
-                    Text("76")
-                        .font(.subheadline).bold()
-                    Text("Following")
-                        .font(.caption)
-                        .foregroundColor(.gray)
-                }
-                
-                HStack(spacing: 4) {
-                    Text("94")
-                        .font(.subheadline).bold()
-                    Text("Followers")
-                        .font(.caption)
-                        .foregroundColor(.gray)
-                }
-            }
+            UserStatsView()
             .padding(.vertical)
         }
         .padding(.horizontal)
@@ -163,11 +147,13 @@ extension ProfileView {
     }
     
     var tweetsView: some View {
-        ScrollView {
-            LazyVStack {
-                ForEach(0...20, id: \.self) { _ in
-                    TweetRowView()
-                    
+        VStack {
+            ScrollView {
+                LazyVStack {
+                    ForEach(0...20, id: \.self) { _ in
+                        TweetRowView()
+                        
+                    }
                 }
             }
         }
