@@ -19,6 +19,8 @@
 		1D4B66A32799837E00F33EB4 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4B66A22799837E00F33EB4 /* ProfileView.swift */; };
 		1D52E37D279A50B200FAF376 /* TwitFilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D52E37C279A50B200FAF376 /* TwitFilterViewModel.swift */; };
 		1D52E385279B8FFA00FAF376 /* UserRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D52E384279B8FFA00FAF376 /* UserRowView.swift */; };
+		1D533996279EB9240098E9FA /* NewTweetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D533995279EB9240098E9FA /* NewTweetView.swift */; };
+		1D533998279EBA030098E9FA /* TextArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D533997279EBA030098E9FA /* TextArea.swift */; };
 		1DFCEFAB279D389700B8D1BB /* SideMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFCEFAA279D389700B8D1BB /* SideMenuView.swift */; };
 		1DFCEFAD279D38A700B8D1BB /* SideMenuRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFCEFAC279D38A700B8D1BB /* SideMenuRowView.swift */; };
 		1DFCEFAF279D38B600B8D1BB /* SideMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFCEFAE279D38B600B8D1BB /* SideMenuViewModel.swift */; };
@@ -40,6 +42,8 @@
 		1D4B66A22799837E00F33EB4 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		1D52E37C279A50B200FAF376 /* TwitFilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitFilterViewModel.swift; sourceTree = "<group>"; };
 		1D52E384279B8FFA00FAF376 /* UserRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRowView.swift; sourceTree = "<group>"; };
+		1D533995279EB9240098E9FA /* NewTweetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTweetView.swift; sourceTree = "<group>"; };
+		1D533997279EBA030098E9FA /* TextArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextArea.swift; sourceTree = "<group>"; };
 		1DFCEFAA279D389700B8D1BB /* SideMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuView.swift; sourceTree = "<group>"; };
 		1DFCEFAC279D38A700B8D1BB /* SideMenuRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuRowView.swift; sourceTree = "<group>"; };
 		1DFCEFAE279D38B600B8D1BB /* SideMenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewModel.swift; sourceTree = "<group>"; };
@@ -135,6 +139,7 @@
 		1D4B668C279979EB00F33EB4 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				1D533992279EB90E0098E9FA /* UploadTweet */,
 				1DFCEFA7279D387D00B8D1BB /* SideMenu */,
 				1D52E381279B8FDF00FAF376 /* Tweets */,
 				1D52E380279B8FDC00FAF376 /* Users */,
@@ -256,6 +261,31 @@
 			path = Tweets;
 			sourceTree = "<group>";
 		};
+		1D533992279EB90E0098E9FA /* UploadTweet */ = {
+			isa = PBXGroup;
+			children = (
+				1D533994279EB91C0098E9FA /* ViewModels */,
+				1D533993279EB9180098E9FA /* Views */,
+			);
+			path = UploadTweet;
+			sourceTree = "<group>";
+		};
+		1D533993279EB9180098E9FA /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1D533995279EB9240098E9FA /* NewTweetView.swift */,
+				1D533997279EBA030098E9FA /* TextArea.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		1D533994279EB91C0098E9FA /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		1DFCEFA7279D387D00B8D1BB /* SideMenu */ = {
 			isa = PBXGroup;
 			children = (
@@ -362,7 +392,9 @@
 				1DFCEFB1279D3A4B00B8D1BB /* UserStatsView.swift in Sources */,
 				1D4B66972799824200F33EB4 /* MainTabView.swift in Sources */,
 				1DFCEFAF279D38B600B8D1BB /* SideMenuViewModel.swift in Sources */,
+				1D533998279EBA030098E9FA /* TextArea.swift in Sources */,
 				1D52E385279B8FFA00FAF376 /* UserRowView.swift in Sources */,
+				1D533996279EB9240098E9FA /* NewTweetView.swift in Sources */,
 				1DFCEFB4279D46C300B8D1BB /* ContentView.swift in Sources */,
 				1D4B66A12799837200F33EB4 /* MessagesView.swift in Sources */,
 				1D4B669D2799835300F33EB4 /* ExploreView.swift in Sources */,
