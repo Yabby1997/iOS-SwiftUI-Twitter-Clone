@@ -8,8 +8,52 @@
 import SwiftUI
 
 struct RegistrationView: View {
+    @Environment(\.presentationMode) var presentationMode
+    @State private var email = ""
+    @State private var username = ""
+    @State private var fullname = ""
+    @State private var password = ""
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            AuthenticationHeaderView(title: "Get started.\nCreate your account")
+            
+            VStack(spacing: 40) {
+                CustomTextField(imageName: "envelope", placeholderText: "E-mail", text: self.$email)
+                CustomTextField(imageName: "person", placeholderText: "Username", text: self.$username)
+                CustomTextField(imageName: "person", placeholderText: "Full name", text: self.$fullname)
+                CustomTextField(imageName: "lock", placeholderText: "Password", text: self.$password)
+            }
+            .padding(32)
+            
+            Button {
+                print("Sign up")
+            } label: {
+                Text("Sign Up")
+                    .font(.headline)
+                    .foregroundColor(.white)
+                    .frame(width: 340, height: 50)
+                    .background(Color(.systemBlue))
+                    .clipShape(Capsule())
+                    .padding()
+            }
+            .shadow(color: .gray.opacity(0.5), radius: 10, x: 0, y: 0)
+            
+            Spacer()
+            
+            Button {
+                self.presentationMode.wrappedValue.dismiss()
+            } label: {
+                Text("Already have an account?")
+                    .font(.footnote)
+                Text("Sign In")
+                    .font(.footnote)
+                    .fontWeight(.semibold)
+            }
+            .padding(.bottom, 32)
+        }
+        .ignoresSafeArea()
+        .navigationBarHidden(true)
     }
 }
 
