@@ -12,6 +12,7 @@
 		1D48601D27A4062900ABE381 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 1D48601C27A4062900ABE381 /* FirebaseFirestore */; };
 		1D48601F27A4062900ABE381 /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 1D48601E27A4062900ABE381 /* FirebaseFirestoreSwift-Beta */; };
 		1D48602127A4062900ABE381 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 1D48602027A4062900ABE381 /* FirebaseStorage */; };
+		1D48602327A4090000ABE381 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D48602227A4090000ABE381 /* AuthenticationViewModel.swift */; };
 		1D4B667B2799794F00F33EB4 /* TwitterCloneApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4B667A2799794F00F33EB4 /* TwitterCloneApp.swift */; };
 		1D4B667F2799795200F33EB4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D4B667E2799795200F33EB4 /* Assets.xcassets */; };
 		1D4B66822799795200F33EB4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D4B66812799795200F33EB4 /* Preview Assets.xcassets */; };
@@ -40,6 +41,7 @@
 
 /* Begin PBXFileReference section */
 		1D48601727A4037200ABE381 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		1D48602227A4090000ABE381 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
 		1D4B66772799794F00F33EB4 /* TwitterClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TwitterClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D4B667A2799794F00F33EB4 /* TwitterCloneApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterCloneApp.swift; sourceTree = "<group>"; };
 		1D4B667E2799795200F33EB4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -323,6 +325,7 @@
 		1D53399A279FD8650098E9FA /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				1D48602227A4090000ABE381 /* AuthenticationViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -458,6 +461,7 @@
 				1DFCEFAD279D38A700B8D1BB /* SideMenuRowView.swift in Sources */,
 				1D4B667B2799794F00F33EB4 /* TwitterCloneApp.swift in Sources */,
 				1DEB635927A2B90A008D510E /* AuthenticationHeaderView.swift in Sources */,
+				1D48602327A4090000ABE381 /* AuthenticationViewModel.swift in Sources */,
 				1DFCEFB1279D3A4B00B8D1BB /* UserStatsView.swift in Sources */,
 				1D4B66972799824200F33EB4 /* MainTabView.swift in Sources */,
 				1DFCEFAF279D38B600B8D1BB /* SideMenuViewModel.swift in Sources */,
