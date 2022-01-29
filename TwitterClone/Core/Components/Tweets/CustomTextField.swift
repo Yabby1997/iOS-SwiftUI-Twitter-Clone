@@ -10,7 +10,15 @@ import SwiftUI
 struct CustomTextField: View {
     let imageName: String
     let placeholderText: String
+    let isSecured: Bool
     @Binding var text: String
+    
+    init(imageName: String, placeholderText: String, isSecured: Bool = false, text: Binding<String>) {
+        self.imageName = imageName
+        self.placeholderText = placeholderText
+        self.isSecured = isSecured
+        self._text = text
+    }
     
     var body: some View {
         VStack {
@@ -21,7 +29,11 @@ struct CustomTextField: View {
                     .frame(width: 20, height: 20)
                     .foregroundColor(Color(.darkGray))
                 
-                TextField(self.placeholderText, text: self.$text)
+                if self.isSecured {
+                    SecureField(self.placeholderText, text: self.$text)
+                } else {
+                    TextField(self.placeholderText, text: self.$text)
+                }
             }
             Divider()
         }

@@ -23,7 +23,7 @@ struct RegistrationView: View {
                 CustomTextField(imageName: "envelope", placeholderText: "E-mail", text: self.$email)
                 CustomTextField(imageName: "person", placeholderText: "Username", text: self.$username)
                 CustomTextField(imageName: "person", placeholderText: "Full name", text: self.$fullname)
-                CustomTextField(imageName: "lock", placeholderText: "Password", text: self.$password)
+                CustomTextField(imageName: "lock", placeholderText: "Password", isSecured: true, text: self.$password)
             }
             .padding(32)
             

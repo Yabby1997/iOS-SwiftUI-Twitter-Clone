@@ -18,7 +18,7 @@ struct LoginView: View {
             
             VStack(spacing: 40) {
                 CustomTextField(imageName: "envelope", placeholderText: "Email", text: $email)
-                CustomTextField(imageName: "lock", placeholderText: "Password", text: $password)
+                CustomTextField(imageName: "lock", placeholderText: "Password", isSecured: true, text: $password)
             }
             .padding(.horizontal, 32)
             .padding(.top, 44)
