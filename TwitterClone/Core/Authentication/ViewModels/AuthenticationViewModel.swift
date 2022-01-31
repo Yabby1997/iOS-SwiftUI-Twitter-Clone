@@ -11,6 +11,7 @@ import Firebase
 class AuthViewModel: ObservableObject {
     @Published var error: Error?
     @Published var userSession: User?
+    @Published var userDidAuthenticatedSignal: Bool = false
     
     init() {
         self.userSession = Auth.auth().currentUser
@@ -28,7 +29,7 @@ class AuthViewModel: ObservableObject {
         Auth.auth().createUser(withEmail: email, password: password) { [weak self] result, error in
             self?.error = error
             guard let user = result?.user else { return }
-            self?.userSession = user
+//            self?.userSession = user
             
             let data = [
                 "uid": user.uid,
@@ -39,7 +40,10 @@ class AuthViewModel: ObservableObject {
             
             Firestore.firestore().collection("users")
                 .document(user.uid)
-                .setData(data)
+                .setData(data) { [weak self] error in
+                    if let error = error { self?.error = error }
+                    self?.userDidAuthenticatedSignal = true
+                }
         }
     }
     
