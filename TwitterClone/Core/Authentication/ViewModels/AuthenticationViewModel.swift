@@ -6,12 +6,17 @@
 //
 
 import SwiftUI
+import Combine
+
 import Firebase
 
 class AuthViewModel: ObservableObject {
     @Published var error: Error?
     @Published var userSession: User?
+    @Published var tempSession: User?
     @Published var userDidAuthenticatedSignal: Bool = false
+    
+    private var cancellables: Set<AnyCancellable> = []
     
     init() {
         self.userSession = Auth.auth().currentUser
@@ -29,7 +34,7 @@ class AuthViewModel: ObservableObject {
         Auth.auth().createUser(withEmail: email, password: password) { [weak self] result, error in
             self?.error = error
             guard let user = result?.user else { return }
-//            self?.userSession = user
+            self?.tempSession = user
             
             let data = [
                 "uid": user.uid,
@@ -54,5 +59,25 @@ class AuthViewModel: ObservableObject {
         } catch(let error) {
             self.error = error
         }
+    }
+    
+    func uploadProfileImage(_ image: UIImage) {
+        guard let uid = self.tempSession?.uid,
+              let imageData = image.jpegData(compressionQuality: 0.5) else { return }
+        
+        DataUploader.uploadData(path: .profileImages, data: imageData)
+            .sink { [weak self] completion in
+                guard case .failure(let error) = completion else { return }
+                self?.error = error
+            } receiveValue: { [weak self] url in
+                Firestore.firestore().collection("users")
+                    .document(uid)
+                    .updateData(["profileImage": url]) { error in
+                        if let error = error { self?.error = error }
+                        self?.userSession = self?.tempSession
+                    }
+            }
+            .store(in: &self.cancellables)
+
     }
 }

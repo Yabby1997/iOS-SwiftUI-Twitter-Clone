@@ -10,6 +10,7 @@ import SwiftUI
 struct ProfilePhotoSelectionView: View {
     @State private var isImagePickerShowing: Bool = false
     @State private var selectedImage: UIImage?
+    @EnvironmentObject private var viewModel: AuthViewModel
     
     var body: some View {
         VStack {
@@ -40,7 +41,7 @@ struct ProfilePhotoSelectionView: View {
             
             if let image = selectedImage {
                 Button {
-                    print("!!!")
+                    viewModel.uploadProfileImage(image)
                 } label: {
                     Text("Continue")
                         .font(.headline)
