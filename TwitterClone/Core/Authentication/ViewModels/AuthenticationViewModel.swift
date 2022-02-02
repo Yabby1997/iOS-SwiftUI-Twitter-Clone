@@ -15,11 +15,13 @@ class AuthViewModel: ObservableObject {
     @Published var userSession: User?
     @Published var tempSession: User?
     @Published var userDidAuthenticatedSignal: Bool = false
+    private let userService: UserService = UserService()
     
     private var cancellables: Set<AnyCancellable> = []
     
     init() {
         self.userSession = Auth.auth().currentUser
+        self.fetchUser()
     }
     
     func login(email: String, password: String) {
@@ -78,6 +80,10 @@ class AuthViewModel: ObservableObject {
                     }
             }
             .store(in: &self.cancellables)
-
+    }
+    
+    func fetchUser() {
+        guard let uid = self.userSession?.uid else { return }
+        self.userService.fetchUser(with: uid)
     }
 }
