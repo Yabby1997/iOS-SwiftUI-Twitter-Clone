@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct ContentView: View {
     @State private var showMenu = false
@@ -42,15 +43,23 @@ extension ContentView {
                                 self.showMenu.toggle()
                             }
                         } label: {
-                            Circle().frame(width: 32, height: 32)
+                            if let currentUser = self.viewModel.currentUser {
+                                KFImage(URL(string: currentUser.profileImageUrl))
+                                    .resizable()
+                                    .scaledToFill()
+                                    .clipShape(Circle())
+                                    .frame(width: 32, height: 32)
+                            } else {
+                                Circle()
+                                    .frame(width: 32, height: 32)
+                            }
                         }
                     }
                 }
             
             if self.showMenu {
                 ZStack {
-                    Color(.black)
-                        .opacity(self.showMenu ? 0.25 : 0)
+                    Color(.black).opacity(self.showMenu ? 0.25 : 0)
                 }
                 .onTapGesture {
                     withAnimation(.easeInOut) {

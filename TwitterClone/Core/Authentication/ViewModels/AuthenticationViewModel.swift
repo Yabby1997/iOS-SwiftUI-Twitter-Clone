@@ -15,6 +15,7 @@ class AuthViewModel: ObservableObject {
     @Published var userSession: User?
     @Published var tempSession: User?
     @Published var userDidAuthenticatedSignal: Bool = false
+    @Published var currentUser: TwitterUser? = nil
     private let userService: UserService = UserService()
     
     private var cancellables: Set<AnyCancellable> = []
@@ -77,6 +78,7 @@ class AuthViewModel: ObservableObject {
                     .updateData(["profileImage": url]) { error in
                         if let error = error { self?.error = error }
                         self?.userSession = self?.tempSession
+                        self?.fetchUser()
                     }
             }
             .store(in: &self.cancellables)
@@ -85,5 +87,12 @@ class AuthViewModel: ObservableObject {
     func fetchUser() {
         guard let uid = self.userSession?.uid else { return }
         self.userService.fetchUser(with: uid)
+            .sink { [weak self] completion in
+                guard case .failure(let error) = completion else { return }
+                self?.error = error
+            } receiveValue: { [weak self] user in
+                self?.currentUser = user
+            }
+            .store(in: &self.cancellables)
     }
 }

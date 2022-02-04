@@ -6,11 +6,17 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct ProfileView: View {
     @State private var selectedCategory: TweetFilterViewModel = .tweets
     @Environment(\.presentationMode) var mode
     @Namespace private var animation
+    private let user: TwitterUser
+    
+    init(user: TwitterUser) {
+        self.user = user
+    }
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -26,7 +32,13 @@ struct ProfileView: View {
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileView()
+        ProfileView(user: TwitterUser([
+            "uid": "test@gmail.com",
+            "username": "test",
+            "fullname": "test user",
+            "profileImage": "https://images.unsplash.com/photo-1494253109108-2e30c049369b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cmFuZG9tJTIwZm9vZCUyMHN0b3JlfGVufDB8fDB8fA%3D%3D&w=1000&q=80",
+            "email": "test@gmail.com"])!
+        )
     }
 }
 
@@ -44,9 +56,12 @@ extension ProfileView {
                         .resizable()
                         .frame(width: 20, height: 16)
                         .foregroundColor(.white)
-                        .offset(x: 16, y: 12)
+                        .offset(x: 16, y: -16)
                 }
-                Circle()
+                KFImage(URL(string: self.user.profileImageUrl))
+                    .resizable()
+                    .scaledToFill()
+                    .clipShape(Circle())
                     .frame(width: 72, height: 72)
                     .offset(x: 16, y: 24)
             }
@@ -80,12 +95,12 @@ extension ProfileView {
     var userInfoDetails: some View {
         VStack(alignment: .leading, spacing: 4) {
             HStack {
-                Text("Seunghun Yang")
+                Text(self.user.fullname)
                     .font(.title2).bold()
                 Image(systemName: "checkmark.seal.fill")
                     .foregroundColor(Color(.systemBlue))
             }
-            Text("@yabby1997")
+            Text("@\(self.user.username)")
                 .font(.subheadline)
                 .foregroundColor(.gray)
             
