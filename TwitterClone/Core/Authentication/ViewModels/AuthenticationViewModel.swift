@@ -30,6 +30,7 @@ class AuthViewModel: ObservableObject {
             self?.error = error
             guard let user = result?.user else { return }
             self?.userSession = user
+            self?.fetchUser()
         }
     }
     
