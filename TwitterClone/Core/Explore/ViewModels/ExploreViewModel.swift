@@ -11,6 +11,17 @@ import Foundation
 class ExploreViewModel: ObservableObject {
     @Published var error: Error? = nil
     @Published var users: [TwitterUser] = []
+    @Published var searchText = ""
+    
+    var filteredUsers: [TwitterUser] {
+        if self.searchText.isEmpty {
+            return self.users
+        } else {
+            let lowerCasedQuery = searchText.lowercased()
+            return self.users.filter { $0.username.lowercased().contains(lowerCasedQuery) || $0.fullname.lowercased().contains(lowerCasedQuery) }
+        }
+    }
+    
     private let service: UserService
     private var cancellables: Set<AnyCancellable> = []
     
