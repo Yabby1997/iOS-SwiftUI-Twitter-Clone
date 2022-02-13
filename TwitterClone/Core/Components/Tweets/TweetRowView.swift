@@ -1,5 +1,5 @@
 //
-//  twitRowView.swift
+//  TweetRowView.swift
 //  TwitterClone
 //
 //  Created by Seunghun Yang on 2022/01/20.
@@ -10,13 +10,13 @@ import SwiftUI
 import FirebaseFirestoreSwift
 import Kingfisher
 
-struct twitRowView: View {
-    let twit: Twit
+struct TweetRowView: View {
+    let tweet: Tweet
     
     var body: some View {
         VStack {
             VStack(alignment: .leading) {
-                if let user = self.twit.user {
+                if let user = self.tweet.user {
                     HStack(alignment: .top, spacing: 12) {
                         KFImage(URL(string: user.profileImageUrl))
                             .resizable()
@@ -35,7 +35,7 @@ struct twitRowView: View {
                                     .font(.caption)
                                     .foregroundColor(.gray)
                             }
-                            Text(self.twit.caption)
+                            Text(self.tweet.caption)
                                 .font(.subheadline)
                                 .multilineTextAlignment(.leading)
                         }
@@ -79,9 +79,9 @@ struct twitRowView: View {
     }
 }
 
-//struct TwitRowView_Previews: PreviewProvider {
+//struct TweetRowView_Previews: PreviewProvider {
 //    static var previews: some View {
-//        TwitRowView(twit: Twit(caption: "Hello", timestamp: , uid: "", likes: 5))
+//        TweetRowView(tweet: Tweet(caption: "Hello", timestamp: Timestamp(Date()), uid: "", likes: 5))
 //            .previewLayout(.sizeThatFits)
 //    }
 //}

@@ -32,7 +32,7 @@ enum DataUploader {
         
         return Future<String, Error> { promise in
             reference.putData(data, metadata: nil) { _, error in
-                if let error = error { print(error.localizedDescription) } //return promise(.failure(error)) }
+                if let error = error { return promise(.failure(error)) }
                 reference.downloadURL { url, error in
                     if let error = error { return promise(.failure(error)) }
                     guard let url = url?.absoluteString else { return promise(.failure(Errors.invalidUrl)) }

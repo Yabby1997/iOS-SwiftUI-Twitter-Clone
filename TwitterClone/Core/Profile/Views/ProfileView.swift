@@ -9,13 +9,13 @@ import SwiftUI
 import Kingfisher
 
 struct ProfileView: View {
-    @State private var selectedCategory: TwitFilterViewModel = .twits
+    @State private var selectedCategory: TweetFilterViewModel = .tweets
+    @ObservedObject private var viewModel: ProfileViewModel
     @Environment(\.presentationMode) var mode
     @Namespace private var animation
-    private let user: TwitterUser
     
     init(user: TwitterUser) {
-        self.user = user
+        self.viewModel = ProfileViewModel(user: user)
     }
     
     var body: some View {
@@ -23,8 +23,8 @@ struct ProfileView: View {
             headerView
             actionButtons
             userInfoDetails
-            twitFilterBar
-            twitsView
+            tweetFilterBar
+            tweetsView
             Spacer()
         }
         .navigationBarHidden(true)
@@ -59,7 +59,7 @@ extension ProfileView {
                         .foregroundColor(.white)
                         .offset(x: 16, y: -16)
                 }
-                KFImage(URL(string: self.user.profileImageUrl))
+                KFImage(URL(string: self.viewModel.user.profileImageUrl))
                     .resizable()
                     .scaledToFill()
                     .clipShape(Circle())
@@ -96,12 +96,12 @@ extension ProfileView {
     var userInfoDetails: some View {
         VStack(alignment: .leading, spacing: 4) {
             HStack {
-                Text(self.user.fullname)
+                Text(self.viewModel.user.fullname)
                     .font(.title2).bold()
                 Image(systemName: "checkmark.seal.fill")
                     .foregroundColor(Color(.systemBlue))
             }
-            Text("@\(self.user.username)")
+            Text("@\(self.viewModel.user.username)")
                 .font(.subheadline)
                 .foregroundColor(.gray)
             
@@ -131,9 +131,9 @@ extension ProfileView {
         .padding(.horizontal)
     }
     
-    var twitFilterBar: some View {
+    var tweetFilterBar: some View {
         HStack {
-            ForEach(TwitFilterViewModel.allCases, id: \.rawValue) { category in
+            ForEach(TweetFilterViewModel.allCases, id: \.rawValue) { category in
                 VStack {
                     Text(category.title)
                         .font(.subheadline)
@@ -162,12 +162,12 @@ extension ProfileView {
         .overlay(Divider().offset(x: 0, y: 16))
     }
     
-    var twitsView: some View {
+    var tweetsView: some View {
         VStack {
             ScrollView {
                 LazyVStack {
-                    ForEach(0...20, id: \.self) { _ in
-//                        TwitRowView()
+                    ForEach(self.viewModel.tweets) { tweet in
+                        TweetRowView(tweet: tweet)
                     }
                 }
             }

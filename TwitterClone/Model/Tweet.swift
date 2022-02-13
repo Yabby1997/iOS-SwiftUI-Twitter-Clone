@@ -1,5 +1,5 @@
 //
-//  Twit.swift
+//  Tweet.swift
 //  TwitterClone
 //
 //  Created by Seunghun Yang on 2022/02/13.
@@ -8,7 +8,7 @@
 import Firebase
 import FirebaseFirestoreSwift
 
-struct Twit: Identifiable, Decodable {
+struct Tweet: Identifiable, Decodable {
     @DocumentID var id: String?
     var user: TwitterUser?
     let caption: String

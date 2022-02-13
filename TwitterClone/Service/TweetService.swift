@@ -1,5 +1,5 @@
 //
-//  TwitService.swift
+//  TweetService.swift
 //  TwitterClone
 //
 //  Created by Seunghun Yang on 2022/02/07.
@@ -8,7 +8,7 @@
 import Firebase
 import Combine
 
-struct TwitService {
+struct TweetService {
     
     enum Errors: LocalizedError {
         case notAuthenticated
@@ -22,7 +22,7 @@ struct TwitService {
         }
     }
     
-    func uploadTwit(caption: String) -> AnyPublisher<Void, Error> {
+    func uploadTweet(caption: String) -> AnyPublisher<Void, Error> {
         guard let uid = Auth.auth().currentUser?.uid else { return Fail(error: Errors.notAuthenticated).eraseToAnyPublisher() }
         
         let data: [String: Any] = [
@@ -33,7 +33,7 @@ struct TwitService {
         ]
         
         return Future<Void, Error> { promise in
-            Firestore.firestore().collection("twits")
+            Firestore.firestore().collection("tweets")
                 .document()
                 .setData(data) { error in
                     if let error = error { return promise(.failure(error)) }
@@ -43,13 +43,27 @@ struct TwitService {
         .eraseToAnyPublisher()
     }
     
-    func fetchTwit() -> AnyPublisher<[Twit], Error> {
-        return Future<[Twit], Error> { promise in
-            Firestore.firestore().collection("twits")
+    func fetchTweets() -> AnyPublisher<[Tweet], Error> {
+        return Future<[Tweet], Error> { promise in
+            Firestore.firestore().collection("tweets")
+                .order(by: "timestamp", descending: true)
                 .getDocuments { snapshot, error in
                     if let error = error { return promise(.failure(error)) }
                     guard let documents = snapshot?.documents else { return promise(.failure(Errors.invalidDocument)) }
-                    return promise(.success(documents.compactMap { try? $0.data(as: Twit.self) }))
+                    return promise(.success(documents.compactMap { try? $0.data(as: Tweet.self) }))
+                }
+        }
+        .eraseToAnyPublisher()
+    }
+    
+    func fetchTweets(for uid: String) -> AnyPublisher<[Tweet], Error> {
+        return Future<[Tweet], Error> { promise in
+            Firestore.firestore().collection("tweets")
+                .whereField("uid", isEqualTo: uid)
+                .getDocuments { snapshot, error in
+                    if let error = error { return promise(.failure(error)) }
+                    guard let documents = snapshot?.documents else { return promise(.failure(Errors.invalidDocument)) }
+                    return promise(.success(documents.compactMap { try? $0.data(as: Tweet.self) }.sorted { $0.timestamp.dateValue() > $1.timestamp.dateValue() }))
                 }
         }
         .eraseToAnyPublisher()
