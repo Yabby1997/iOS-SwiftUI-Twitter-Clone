@@ -1,5 +1,5 @@
 //
-//  NewTweetView.swift
+//  NewTwitView.swift
 //  TwitterClone
 //
 //  Created by Seunghun Yang on 2022/01/24.
@@ -9,10 +9,10 @@ import SwiftUI
 
 import Kingfisher
 
-struct NewTweetView: View {
+struct NewTwitView: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var authViewModel: AuthViewModel
-    @ObservedObject var uploadTweetViewModel = UploadTweetViewModel()
+    @ObservedObject var uploadTwitViewModel = UploadTwitViewModel()
     
     var body: some View {
         VStack {
@@ -27,9 +27,9 @@ struct NewTweetView: View {
                 Spacer()
                 
                 Button {
-                    self.uploadTweetViewModel.uploadTweet()
+                    self.uploadTwitViewModel.uploadTwit()
                 } label: {
-                    Text("Tweet")
+                    Text("Twit")
                         .padding(.horizontal)
                         .padding(.vertical, 8)
                         .background(Color(.systemBlue))
@@ -50,18 +50,18 @@ struct NewTweetView: View {
                     Circle()
                         .frame(width: 64, height: 64)
                 }
-                TextArea(text: self.$uploadTweetViewModel.caption, placeholder: "What's happening?")
+                TextArea(text: self.$uploadTwitViewModel.caption, placeholder: "What's happening?")
             }
             .padding()
         }
-        .onReceive(self.uploadTweetViewModel.$didUploadTweet) { isSucceed in
+        .onReceive(self.uploadTwitViewModel.$didUploadTwit) { isSucceed in
             if isSucceed { self.presentationMode.wrappedValue.dismiss() }
         }
     }
 }
 
-struct NewTweetView_Previews: PreviewProvider {
+struct NewTwitView_Previews: PreviewProvider {
     static var previews: some View {
-        NewTweetView()
+        NewTwitView()
     }
 }

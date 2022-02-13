@@ -9,7 +9,7 @@ import SwiftUI
 import Kingfisher
 
 struct ProfileView: View {
-    @State private var selectedCategory: TweetFilterViewModel = .tweets
+    @State private var selectedCategory: TwitFilterViewModel = .twits
     @Environment(\.presentationMode) var mode
     @Namespace private var animation
     private let user: TwitterUser
@@ -23,8 +23,8 @@ struct ProfileView: View {
             headerView
             actionButtons
             userInfoDetails
-            tweetFilterBar
-            tweetsView
+            twitFilterBar
+            twitsView
             Spacer()
         }
         .navigationBarHidden(true)
@@ -131,9 +131,9 @@ extension ProfileView {
         .padding(.horizontal)
     }
     
-    var tweetFilterBar: some View {
+    var twitFilterBar: some View {
         HStack {
-            ForEach(TweetFilterViewModel.allCases, id: \.rawValue) { category in
+            ForEach(TwitFilterViewModel.allCases, id: \.rawValue) { category in
                 VStack {
                     Text(category.title)
                         .font(.subheadline)
@@ -162,13 +162,12 @@ extension ProfileView {
         .overlay(Divider().offset(x: 0, y: 16))
     }
     
-    var tweetsView: some View {
+    var twitsView: some View {
         VStack {
             ScrollView {
                 LazyVStack {
                     ForEach(0...20, id: \.self) { _ in
-                        TweetRowView()
-                        
+//                        TwitRowView()
                     }
                 }
             }

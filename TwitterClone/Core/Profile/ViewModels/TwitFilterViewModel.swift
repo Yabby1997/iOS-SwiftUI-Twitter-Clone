@@ -7,12 +7,12 @@
 
 import Foundation
 
-enum TweetFilterViewModel: Int, CaseIterable {
-    case tweets, replies, likes
+enum TwitFilterViewModel: Int, CaseIterable {
+    case twits, replies, likes
     
     var title: String {
         switch self {
-        case .tweets: return "Tweets"
+        case .twits: return "Twits"
         case .replies: return "Replies"
         case .likes: return "Likes"
         }

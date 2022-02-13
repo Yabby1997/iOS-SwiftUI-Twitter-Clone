@@ -8,19 +8,20 @@
 import SwiftUI
 
 struct FeedView: View {
-    @State private var showNewTweetView: Bool = false
+    @State private var showNewTwitView: Bool = false
+    @ObservedObject var viewModel = FeedViewModel()
     
     var body: some View {
         ZStack(alignment: .bottomTrailing) {
             ScrollView {
                 LazyVStack {
-                    ForEach(0...20, id: \.self) { _ in
-                        TweetRowView()
+                    ForEach(self.viewModel.twits) { twit in
+                        twitRowView(twit: twit)
                     }
                 }
             }
             Button {
-                self.showNewTweetView.toggle()
+                self.showNewTwitView.toggle()
             } label: {
                 ZStack {
                     Circle()
@@ -32,8 +33,8 @@ struct FeedView: View {
                 .padding()
             }
         }
-        .fullScreenCover(isPresented: $showNewTweetView) {
-            NewTweetView()
+        .fullScreenCover(isPresented: $showNewTwitView) {
+            NewTwitView()
         }
     }
 }
