@@ -15,4 +15,5 @@ struct Tweet: Identifiable, Decodable {
     let timestamp: Timestamp
     let uid: String
     var likes: Int
+    var didLiked: Bool? = false
 }

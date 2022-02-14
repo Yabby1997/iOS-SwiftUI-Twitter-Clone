@@ -11,12 +11,16 @@ import FirebaseFirestoreSwift
 import Kingfisher
 
 struct TweetRowView: View {
-    let tweet: Tweet
+    @ObservedObject private var viewModel: TweetRowViewModel
+    
+    init(tweet: Tweet) {
+        self.viewModel = TweetRowViewModel(tweet: tweet)
+    }
     
     var body: some View {
         VStack {
             VStack(alignment: .leading) {
-                if let user = self.tweet.user {
+                if let user = self.viewModel.tweet.user {
                     HStack(alignment: .top, spacing: 12) {
                         KFImage(URL(string: user.profileImageUrl))
                             .resizable()
@@ -35,7 +39,7 @@ struct TweetRowView: View {
                                     .font(.caption)
                                     .foregroundColor(.gray)
                             }
-                            Text(self.tweet.caption)
+                            Text(self.viewModel.tweet.caption)
                                 .font(.subheadline)
                                 .multilineTextAlignment(.leading)
                         }
@@ -57,9 +61,10 @@ struct TweetRowView: View {
                     }
                     Spacer()
                     Button {
-                        print("Hello")
+                        self.viewModel.likeTweet()
                     } label: {
-                        Image(systemName: "heart")
+                        Image(systemName: self.viewModel.tweet.didLiked ?? false ? "heart.fill" : "heart")
+                            .foregroundColor(self.viewModel.tweet.didLiked ?? false ? .red : .gray)
                             .font(.subheadline)
                     }
                     Spacer()
