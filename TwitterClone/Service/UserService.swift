@@ -30,8 +30,7 @@ class UserService {
                 .document(uid)
                 .getDocument { snapshot, error in
                     if let error = error { return promise(.failure(error)) }
-                    guard let userData = snapshot?.data()else { return promise(.failure(Errors.invalidSnapshot)) }
-                    guard let twitterUser = TwitterUser(userData) else { return promise(.failure(Errors.decodingFailed)) }
+                    guard let twitterUser = try? snapshot?.data(as: TwitterUser.self) else { return promise(.failure(Errors.invalidSnapshot)) }
                     return promise(.success(twitterUser))
                 }
         }
@@ -44,7 +43,7 @@ class UserService {
                 .getDocuments { snapshot, error in
                     if let error = error { return promise(.failure(error)) }
                     guard let documents = snapshot?.documents else { return promise(.failure(Errors.decodingFailed)) }
-                    return promise(.success(documents.compactMap { TwitterUser($0.data()) }))
+                    return promise(.success(documents.compactMap { try? $0.data(as: TwitterUser.self) } ))
                 }
         }
         .eraseToAnyPublisher()

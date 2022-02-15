@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+import Firebase
 import FirebaseFirestoreSwift
 import Kingfisher
 
@@ -22,7 +23,7 @@ struct TweetRowView: View {
             VStack(alignment: .leading) {
                 if let user = self.viewModel.tweet.user {
                     HStack(alignment: .top, spacing: 12) {
-                        KFImage(URL(string: user.profileImageUrl))
+                        KFImage(URL(string: user.profileImage))
                             .resizable()
                             .scaledToFill()
                             .clipShape(Circle())
@@ -84,9 +85,9 @@ struct TweetRowView: View {
     }
 }
 
-//struct TweetRowView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        TweetRowView(tweet: Tweet(caption: "Hello", timestamp: Timestamp(Date()), uid: "", likes: 5))
-//            .previewLayout(.sizeThatFits)
-//    }
-//}
+struct TweetRowView_Previews: PreviewProvider {
+    static var previews: some View {
+        TweetRowView(tweet: Tweet(caption: "Hello", timestamp: Timestamp(date: Date()), uid: "", likes: 5))
+            .previewLayout(.sizeThatFits)
+    }
+}

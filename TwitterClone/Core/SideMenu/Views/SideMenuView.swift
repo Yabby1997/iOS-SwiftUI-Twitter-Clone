@@ -15,7 +15,7 @@ struct SideMenuView: View {
         if let currentUser = self.viewModel.currentUser {
             VStack(alignment: .leading, spacing: 32) {
                 VStack(alignment: .leading) {
-                    KFImage(URL(string: currentUser.profileImageUrl))
+                    KFImage(URL(string: currentUser.profileImage))
                         .resizable()
                         .scaledToFill()
                         .clipShape(Circle())

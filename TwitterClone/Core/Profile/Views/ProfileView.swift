@@ -33,13 +33,7 @@ struct ProfileView: View {
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileView(user: TwitterUser([
-            "uid": "test@gmail.com",
-            "username": "test",
-            "fullname": "test user",
-            "profileImage": "https://images.unsplash.com/photo-1494253109108-2e30c049369b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cmFuZG9tJTIwZm9vZCUyMHN0b3JlfGVufDB8fDB8fA%3D%3D&w=1000&q=80",
-            "email": "test@gmail.com"])!
-        )
+        ProfileView(user: TwitterUser(id: "test", username: "test", fullname: "test", profileImage: "", email: "test"))
     }
 }
 
@@ -59,7 +53,7 @@ extension ProfileView {
                         .foregroundColor(.white)
                         .offset(x: 16, y: -16)
                 }
-                KFImage(URL(string: self.viewModel.user.profileImageUrl))
+                KFImage(URL(string: self.viewModel.user.profileImage))
                     .resizable()
                     .scaledToFill()
                     .clipShape(Circle())
@@ -82,7 +76,7 @@ extension ProfileView {
             Button {
                 print("!")
             } label: {
-                Text("Edit Profile")
+                Text(self.viewModel.user.isCurrentUser ? "Edit Profile" : "Follow")
                     .font(.subheadline).bold()
                     .frame(width: 120, height: 32)
                     .overlay(RoundedRectangle(cornerRadius: 20).stroke(Color.gray, lineWidth: 0.75))

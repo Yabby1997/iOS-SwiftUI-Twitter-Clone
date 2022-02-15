@@ -44,7 +44,7 @@ extension ContentView {
                             }
                         } label: {
                             if let currentUser = self.viewModel.currentUser {
-                                KFImage(URL(string: currentUser.profileImageUrl))
+                                KFImage(URL(string: currentUser.profileImage))
                                     .resizable()
                                     .scaledToFill()
                                     .clipShape(Circle())
