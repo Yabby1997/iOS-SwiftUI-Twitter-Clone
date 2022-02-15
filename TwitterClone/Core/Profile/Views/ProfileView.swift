@@ -166,7 +166,7 @@ extension ProfileView {
         VStack {
             ScrollView {
                 LazyVStack {
-                    ForEach(self.viewModel.tweets) { tweet in
+                    ForEach(self.viewModel.tweets(for: self.selectedCategory)) { tweet in
                         TweetRowView(tweet: tweet)
                     }
                 }
